@@ -20,7 +20,7 @@ class MindfullExerciseProvider extends ChangeNotifier {
         ],
         duration: 5,
         instructionsUrl: "https://github.com/HGSChandeepa/Meditate",
-        imagePath: "assets/images/mindfull.png",
+        imagePath: "assets/images/meditation.png",
       ),
       MindfullExerciseModel(
         category: "Daily Practice",
@@ -33,14 +33,14 @@ class MindfullExerciseProvider extends ChangeNotifier {
           "Write them down in your journal.",
           "Reflect on why these things are meaningful to you.",
         ],
-        imagePath: "assets/images/mindfull.png",
+        imagePath: "assets/images/m4.png",
         duration: 10,
         instructionsUrl: "https://github.com/HGSChandeepa/Meditate",
       ),
       MindfullExerciseModel(
         category: "Stress Relief",
         name: "Body Scan",
-        imagePath: "assets/images/mindfull.png",
+        imagePath: "assets/images/m3.png",
         description:
             "This exercise helps to reduce stress by promoting awareness of physical sensations. It involves mentally scanning your body from head to toe, noticing any areas of tension and consciously relaxing them.",
         instructions: [
@@ -55,7 +55,7 @@ class MindfullExerciseProvider extends ChangeNotifier {
       MindfullExerciseModel(
         category: "Focus",
         name: "Single-Tasking",
-        imagePath: "assets/images/mindfull.png",
+        imagePath: "assets/images/m2.png",
         description:
             "Improve your focus by practicing single-tasking. This exercise encourages you to give your full attention to one task at a time, reducing the habit of multitasking.",
         instructions: [
@@ -69,7 +69,7 @@ class MindfullExerciseProvider extends ChangeNotifier {
       ),
       MindfullExerciseModel(
         category: "Anxiety Relief",
-        imagePath: "assets/images/mindfull.png",
+        imagePath: "assets/images/m1.png",
         name: "Grounding Exercise",
         description:
             "This exercise helps to alleviate anxiety by grounding you in the present moment. It involves using your senses to connect with your surroundings.",
@@ -87,7 +87,7 @@ class MindfullExerciseProvider extends ChangeNotifier {
       MindfullExerciseModel(
         category: "Mindfulness",
         name: "Mindful Walking",
-        imagePath: "assets/images/mindfull.png",
+        imagePath: "assets/images/meditation.png",
         description:
             "This exercise involves walking slowly and mindfully, paying attention to the sensation of your feet touching the ground and the movement of your body.",
         instructions: [
@@ -101,7 +101,7 @@ class MindfullExerciseProvider extends ChangeNotifier {
       ),
       MindfullExerciseModel(
         category: "Self-Acceptance",
-        imagePath: "assets/images/mindfull.png",
+        imagePath: "assets/images/m4.png",
         name: "Loving-Kindness Meditation",
         description:
             "Cultivate self-acceptance and compassion through loving-kindness meditation. This exercise involves silently repeating phrases of goodwill towards yourself and others.",
@@ -117,7 +117,7 @@ class MindfullExerciseProvider extends ChangeNotifier {
       MindfullExerciseModel(
         category: "Relaxation",
         name: "Progressive Muscle Relaxation",
-        imagePath: "assets/images/mindfull.png",
+        imagePath: "assets/images/m3.png",
         description:
             "This exercise helps to reduce physical tension and promote relaxation by progressively tensing and relaxing different muscle groups.",
         instructions: [
@@ -132,7 +132,7 @@ class MindfullExerciseProvider extends ChangeNotifier {
       MindfullExerciseModel(
         category: "Energy",
         name: "Morning Stretch",
-        imagePath: "assets/images/mindfull.png",
+        imagePath: "assets/images/m1.png",
         description:
             "Start your day with a mindful morning stretch. This exercise helps to wake up your body and mind, preparing you for the day ahead.",
         instructions: [
@@ -146,7 +146,7 @@ class MindfullExerciseProvider extends ChangeNotifier {
       ),
       MindfullExerciseModel(
         category: "Creativity",
-        imagePath: "assets/images/mindfull.png",
+        imagePath: "assets/images/m2.png",
         name: "Mindful Drawing",
         description:
             "Enhance your creativity through mindful drawing. This exercise involves focusing on the process of drawing without judgment or expectations.",
@@ -162,5 +162,21 @@ class MindfullExerciseProvider extends ChangeNotifier {
     ];
 
     mindfullExercises = List.from(_allMindfullExercises);
+  }
+
+  //method to search
+  void findMindfullExercise(String query) {
+    if (query.isEmpty) {
+      mindfullExercises = List.from(_allMindfullExercises);
+    } else {
+      mindfullExercises =
+          _allMindfullExercises
+              .where(
+                (exercise) =>
+                    exercise.name.toLowerCase().contains(query.toLowerCase()),
+              )
+              .toList();
+    }
+    notifyListeners();
   }
 }
